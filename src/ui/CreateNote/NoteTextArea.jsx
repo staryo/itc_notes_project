@@ -14,7 +14,7 @@ function NoteTextArea({notesList, updateNotesList}) {
                               onChange={
                                   (currentValue) =>
                                       updateTextForNote(currentValue.target.value)
-                              }>
+                              } placeholder="Add new note here">
                     </TextareaAutosize>
                 </div>
             </div>
@@ -26,7 +26,8 @@ function NoteTextArea({notesList, updateNotesList}) {
                                 console.log(textForNote);
                                 updateNotesList([...notesList, {
                                     "identity": notesList.length,
-                                    "text": textForNote
+                                    "text": textForNote,
+                                    "date": new Date()
                                 }]);
                                 console.log(notesList);
                                 updateTextForNote("");
