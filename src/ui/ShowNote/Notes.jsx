@@ -28,7 +28,7 @@ function Notes({notesList, updateNotesList}) {
                                     </div>
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">Note title</h5>
+                                    <h5 className="card-title">{note.subject}</h5>
                                     {note.text}
                                 </div>
                             </div>
