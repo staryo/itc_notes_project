@@ -10,7 +10,8 @@ function NoteHeader({noteData, removeNoteFromList}) {
                     </div>
                     <div className="col-3 text-end">
                         <button type="button" className="btn-close btn-close-white"
-                                aria-label="Close" onClick={() => {
+                                aria-label="Close" onClick={(e) => {
+                            e.stopPropagation();
                             if (window.confirm("Do you really want to delete?")) {
                                 removeNoteFromList(noteData.identity);
                             }
