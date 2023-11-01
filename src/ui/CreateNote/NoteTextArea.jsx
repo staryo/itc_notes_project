@@ -24,7 +24,7 @@ function NoteTextArea({notesList, updateNotesList}) {
                             className={`w-100 btn btn-outline-light btn-lg btn-block ${textForNote === "" ? "disabled" : ""}`}
                             onClick={() => {
                                 updateNotesList([...notesList, {
-                                    "identity": notesList.length,
+                                    "identity": Date.now(),
                                     "text": textForNote,
                                     "date": new Date()
                                 }]);
