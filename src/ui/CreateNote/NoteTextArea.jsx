@@ -1,18 +1,31 @@
-function NoteTextArea() {
+import {useEffect, useState} from "react";
+
+function NoteTextArea({notesList, updateNotesList}) {
+    const [textForNote, updateTextForNote] = useState("")
+    useEffect(() => {
+        updateTextForNote(textForNote)
+    }, [textForNote])
     return (
         <>
-            <p className="m-0 p-3 text-center text-white">
-                <div className="row">
-                    <div className="col">
-                        <textarea className="w-100"></textarea>
-                    </div>
+            <div className="row">
+                <div className="col">
+                    <textarea className="w-100 p-3 bg-white text-black rounded-3 border-0" value={textForNote} onChange={
+                        (currentValue) =>
+                            updateTextForNote(currentValue.target.value)
+                    }></textarea>
                 </div>
-                <div className="row">
-                    <div className="col">
-                        <button className="w-100">Send</button>
-                    </div>
+            </div>
+            <div className="row mt-3">
+                <div className="col">
+                    <button type="button" className="w-100 btn btn-outline-light btn-lg btn-block" onClick={() => {
+                        updateNotesList([...notesList, {
+                            'identity': notesList.length,
+                            'text': textForNote
+                        }])
+                        updateTextForNote('')
+                    }}>Send</button>
                 </div>
-            </p>
+            </div>
         </>
     );
 }

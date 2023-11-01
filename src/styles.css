@@ -9,7 +9,7 @@
 }
 body {
     height: 100vh;
-    background-image: url('https://previews.123rf.com/images/lunatic67/lunatic671007/lunatic67100700003/7323696-white-notepad-on-blue-background.jpg');
+    background-image: url('../src/assets/3425081.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -89,4 +89,8 @@ a tr {
 
 .text-success {
     color: #b0ff9e !important;
+}
+
+.display-linebreak {
+    white-space: pre-line;
 }
