@@ -23,13 +23,11 @@ function NoteTextArea({notesList, updateNotesList}) {
                     <button type="button"
                             className={`w-100 btn btn-outline-light btn-lg btn-block ${textForNote === "" ? "disabled" : ""}`}
                             onClick={() => {
-                                console.log(textForNote);
                                 updateNotesList([...notesList, {
                                     "identity": notesList.length,
                                     "text": textForNote,
                                     "date": new Date()
                                 }]);
-                                console.log(notesList);
                                 updateTextForNote("");
                             }}>Send
                     </button>
