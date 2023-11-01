@@ -1,31 +1,37 @@
 import {useEffect, useState} from "react";
+import TextareaAutosize from 'react-textarea-autosize';
 
 function NoteTextArea({notesList, updateNotesList}) {
-    const [textForNote, updateTextForNote] = useState("")
+    const [textForNote, updateTextForNote] = useState("");
     useEffect(() => {
-        updateTextForNote(textForNote)
-    }, [textForNote])
+        updateTextForNote(textForNote);
+    }, [textForNote]);
     return (
         <>
             <div className="row">
                 <div className="col">
-                    <textarea rows="8" className="w-100 p-3 bg-white text-black rounded-3 border-0" value={textForNote} onChange={
-                        (currentValue) =>
-                            updateTextForNote(currentValue.target.value)
-                    }></textarea>
+                    <TextareaAutosize minRows="5" maxRows="20" id="no-resize" className="w-100 p-3 bg-white text-black rounded-3 border-0" value={textForNote}
+                              onChange={
+                                  (currentValue) =>
+                                      updateTextForNote(currentValue.target.value)
+                              }>
+                    </TextareaAutosize>
                 </div>
             </div>
             <div className="row mt-3">
                 <div className="col">
-                    <button type="button" className={`w-100 btn btn-outline-light btn-lg btn-block ${textForNote === "" ? "disabled" : ""}`} onClick={() => {
-                        console.log(textForNote)
-                        updateNotesList([...notesList, {
-                            'identity': notesList.length,
-                            'text': textForNote
-                        }])
-                        console.log(notesList)
-                        updateTextForNote('')
-                    }}>Send</button>
+                    <button type="button"
+                            className={`w-100 btn btn-outline-light btn-lg btn-block ${textForNote === "" ? "disabled" : ""}`}
+                            onClick={() => {
+                                console.log(textForNote);
+                                updateNotesList([...notesList, {
+                                    "identity": notesList.length,
+                                    "text": textForNote
+                                }]);
+                                console.log(notesList);
+                                updateTextForNote("");
+                            }}>Send
+                    </button>
                 </div>
             </div>
         </>
