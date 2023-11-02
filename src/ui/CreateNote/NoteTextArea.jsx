@@ -1,5 +1,11 @@
 import {useEffect, useState} from "react";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
+import PropTypes from "prop-types";
+
+NoteTextArea.propTypes = {
+    notesList: PropTypes.array,
+    updateNotesList: PropTypes.func,
+};
 
 function NoteTextArea({notesList, updateNotesList}) {
     const [textForNote, updateTextForNote] = useState("");
@@ -15,20 +21,21 @@ function NoteTextArea({notesList, updateNotesList}) {
             <div className="row my-2">
                 <div className="col">
                     <input className="w-100 p-3 bg-white text-black rounded-3 border-0" value={subjectForNote}
-                                      onChange={
-                                          (currentValue) =>
-                                              updateSubjectForNote(currentValue.target.value)
-                                      } placeholder="Subject">
+                           onChange={
+                               (currentValue) =>
+                                   updateSubjectForNote(currentValue.target.value)
+                           } placeholder="Subject">
                     </input>
                 </div>
             </div>
             <div className="row my-2">
                 <div className="col">
-                    <TextareaAutosize minRows="5" maxRows="20" id="no-resize" className="w-100 p-3 bg-white text-black rounded-3 border-0" value={textForNote}
-                              onChange={
-                                  (currentValue) =>
-                                      updateTextForNote(currentValue.target.value)
-                              } placeholder="Add new note here">
+                    <TextareaAutosize minRows="5" maxRows="20" id="no-resize"
+                                      className="w-100 p-3 bg-white text-black rounded-3 border-0" value={textForNote}
+                                      onChange={
+                                          (currentValue) =>
+                                              updateTextForNote(currentValue.target.value)
+                                      } placeholder="Add new note here">
                     </TextareaAutosize>
                 </div>
             </div>
@@ -45,7 +52,8 @@ function NoteTextArea({notesList, updateNotesList}) {
                                 }]);
                                 updateTextForNote("");
                                 updateSubjectForNote("");
-                            }}>Send
+                            }}>
+                        Add note
                     </button>
                 </div>
             </div>

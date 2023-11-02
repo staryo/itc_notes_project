@@ -1,3 +1,10 @@
+import PropTypes from "prop-types";
+
+NoteHeader.propTypes = {
+    noteData: PropTypes.object,
+    removeNoteFromList: PropTypes.func,
+};
+
 function NoteHeader({noteData, removeNoteFromList}) {
     return (
         <>
