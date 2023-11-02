@@ -1,6 +1,7 @@
 import NoteHeader from "./NoteHeader.jsx";
 import NoteModal from "./NoteModal.jsx";
 import {useState} from "react";
+import moment from "moment";
 
 function EachNote({noteData, removeNoteFromList}) {
     const [show, setShow] = useState(false);
@@ -10,12 +11,16 @@ function EachNote({noteData, removeNoteFromList}) {
 
     return (
         <>
-            <div key={noteData.identity} className="col-3" onClick={handleShow}>
+            <div key={noteData.identity} className="col-4" onClick={handleShow}>
                 <div className="card bg-transparent text-white display-linebreak border-white box">
                     <NoteHeader removeNoteFromList={removeNoteFromList} noteData={noteData}/>
                     <div className="card-body">
-                        <h5 className="card-title">{noteData.subject}</h5>
                         {noteData.text}
+                        <p className="card-text">
+                            <small className="text-white-50">
+                                Created: {moment(noteData.date).calendar()}
+                            </small>
+                        </p>
                     </div>
                 </div>
             </div>
