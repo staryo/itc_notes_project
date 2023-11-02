@@ -25,6 +25,10 @@ function EachNote({noteData, removeNoteFromList}) {
                         <p className="card-text">
                             <small className="text-white-50">
                                 Created: {moment(noteData.date).calendar()}
+                                {noteData.edit
+                                    ? ` (Updated: ${moment(noteData.edit).fromNow()})`
+                                    : ''
+                                }
                             </small>
                         </p>
                     </div>
