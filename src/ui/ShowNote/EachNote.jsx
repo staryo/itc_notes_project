@@ -7,9 +7,10 @@ import moment from "moment";
 EachNote.propTypes = {
     noteData: PropTypes.object,
     removeNoteFromList: PropTypes.func,
+    editNoteInList: PropTypes.func,
 };
 
-function EachNote({noteData, removeNoteFromList}) {
+function EachNote({noteData, removeNoteFromList, editNoteInList}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -27,14 +28,14 @@ function EachNote({noteData, removeNoteFromList}) {
                                 Created: {moment(noteData.date).calendar()}
                                 {noteData.edit
                                     ? ` (Updated: ${moment(noteData.edit).fromNow()})`
-                                    : ''
+                                    : ""
                                 }
                             </small>
                         </p>
                     </div>
                 </div>
             </div>
-            <NoteModal show={show} handleClose={handleClose} noteData={noteData}/>
+            <NoteModal show={show} handleClose={handleClose} noteData={noteData} editNoteInList={editNoteInList}/>
         </>
     );
 }

@@ -9,9 +9,10 @@ NoteModal.propTypes = {
     show: PropTypes.bool,
     handleClose: PropTypes.func,
     noteData: PropTypes.object,
+    editNoteInList: PropTypes.func,
 };
 
-function NoteModal({show, handleClose, noteData}) {
+function NoteModal({show, handleClose, noteData, editNoteInList}) {
     const [textForNote, updateTextForNote] = useState(noteData.text);
     const [subjectForNote, updateSubjectForNote] = useState(noteData.subject);
     useEffect(() => {
@@ -20,11 +21,9 @@ function NoteModal({show, handleClose, noteData}) {
     useEffect(() => {
         updateSubjectForNote(subjectForNote);
     }, [subjectForNote]);
-    const handleSave = (text, subject) => {
+    const handleSave = (identity, subject, text) => {
         handleClose();
-        noteData.text = text;
-        noteData.subject = subject;
-        noteData.edit = new Date();
+        editNoteInList(identity, subject, text)
     };
     return (
         <>
@@ -42,7 +41,7 @@ function NoteModal({show, handleClose, noteData}) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => {
-                        handleSave(textForNote, subjectForNote);
+                        handleSave(noteData.identity, subjectForNote, textForNote);
                     }}>
                         Save Changes
                     </Button>
