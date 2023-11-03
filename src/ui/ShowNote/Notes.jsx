@@ -1,12 +1,17 @@
 import EachNote from "./EachNote.jsx";
 import PropTypes from "prop-types";
+import {useContext} from "react";
+import {NoteList, UpdateNoteList} from "../../App.jsx";
 
 Notes.propTypes = {
     notesList: PropTypes.array,
     updateNotesList: PropTypes.func,
 };
 
-function Notes({notesList, updateNotesList}) {
+function Notes() {
+    const notesList = useContext(NoteList)
+    const updateNotesList = useContext(UpdateNoteList)
+
     const removeNoteFromList = (noteIdentity) => {
         updateNotesList(
             notesList.filter(
