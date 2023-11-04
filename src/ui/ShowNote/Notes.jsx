@@ -7,17 +7,20 @@ function Notes() {
 
     return (
         <>
-            {
-                Object.values(notesList.notesList).toReversed().map((note) => {
-                    return (
-                        <EachNote
-                            key={note.identity}
-                            noteData={note}
-                        />
-                    );
-                })
-            }
+            <div className="row w-100 my-3 g-3">
+                {
+                    Object.values(notesList.notesList).toReversed().map((note) => {
+                        return (
+                            <EachNote
+                                key={note.identity}
+                                noteData={note}
+                            />
+                        );
+                    })
+                }
+            </div>
         </>
+
     );
 }
 

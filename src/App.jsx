@@ -21,15 +21,15 @@ function App() {
     return (
         <>
             <NoteList.Provider value={new NotesListClass(noteListState, updateNotesList)}>
-                <div className="row w-100 my-3 g-3">
-                    <div className="col">
-                        <div className="p-3 rounded-2 box border">
-                            <CreateNote/>
-                        </div>
+                <div className="row w-100 my-1 g-3">
+                    <div className="col p-3 rounded-2 box border">
+                        <CreateNote/>
                     </div>
                 </div>
-                <div className="row w-100 g-3">
-                    <Notes/>
+                <div className="row w-100 my-1 g-3">
+                    <div className="col p-3 rounded-2 box border">
+                        <Notes/>
+                    </div>
                 </div>
             </NoteList.Provider>
         </>
