@@ -6,11 +6,9 @@ import moment from "moment";
 
 EachNote.propTypes = {
     noteData: PropTypes.object,
-    removeNoteFromList: PropTypes.func,
-    editNoteInList: PropTypes.func,
 };
 
-function EachNote({noteData, removeNoteFromList, editNoteInList}) {
+function EachNote({noteData}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -20,7 +18,7 @@ function EachNote({noteData, removeNoteFromList, editNoteInList}) {
         <>
             <div key={noteData.identity} className="col-xl-4 col-lg-6 col-12" onClick={handleShow}>
                 <div className="card bg-transparent text-white display-linebreak border-white box">
-                    <NoteHeader removeNoteFromList={removeNoteFromList} noteData={noteData}/>
+                    <NoteHeader noteData={noteData}/>
                     <div className="card-body">
                         {noteData.text}
                         <p className="card-text">
@@ -35,7 +33,7 @@ function EachNote({noteData, removeNoteFromList, editNoteInList}) {
                     </div>
                 </div>
             </div>
-            <NoteModal show={show} handleClose={handleClose} noteData={noteData} editNoteInList={editNoteInList}/>
+            <NoteModal show={show} handleClose={handleClose} noteData={noteData}/>
         </>
     );
 }

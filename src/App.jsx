@@ -11,7 +11,7 @@ function App() {
     const [noteList, updateNotesList] = useState(() => {
         const saved = localStorage.getItem("noteList");
         const initialValue = JSON.parse(saved);
-        return initialValue || [];
+        return initialValue || {};
     });
 
 

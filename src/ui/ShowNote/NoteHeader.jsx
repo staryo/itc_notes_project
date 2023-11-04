@@ -1,11 +1,21 @@
 import PropTypes from "prop-types";
+import {useContext} from "react";
+import {NoteList, UpdateNoteList} from "../../App.jsx";
 
 NoteHeader.propTypes = {
     noteData: PropTypes.object,
-    removeNoteFromList: PropTypes.func,
 };
 
-function NoteHeader({noteData, removeNoteFromList}) {
+function NoteHeader({noteData}) {
+    const notesList = useContext(NoteList)
+    const updateNotesList = useContext(UpdateNoteList)
+
+    const removeNoteFromList = (noteIdentity) => {
+        const newNotesList = {...notesList}
+        delete newNotesList[noteIdentity]
+        updateNotesList(newNotesList);
+    };
+
     return (
         <>
             <div className="card-header border-white">

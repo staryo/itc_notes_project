@@ -11,14 +11,17 @@ CreateNote.propTypes = {
 function CreateNote() {
     const [textForNote, updateTextForNote] = useState("");
     const [subjectForNote, updateSubjectForNote] = useState("");
+
     const notesList = useContext(NoteList)
     const updateNotesList = useContext(UpdateNoteList)
+
     useEffect(() => {
         updateTextForNote(textForNote);
     }, [textForNote]);
     useEffect(() => {
         updateSubjectForNote(subjectForNote);
     }, [subjectForNote]);
+
     return (
         <>
             <NoteForm
@@ -32,13 +35,16 @@ function CreateNote() {
                     <button type="button"
                             className={`w-100 btn btn-outline-light btn-lg btn-block ${textForNote === "" ? "disabled" : ""}`}
                             onClick={() => {
-                                updateNotesList([...notesList, {
+                                const identity = Date.now()
+                                const newNotesList = {...notesList}
+                                newNotesList[identity] = {
                                     "identity": Date.now(),
                                     "text": textForNote,
                                     "date": new Date(),
                                     "edit": null,
                                     "subject": subjectForNote
-                                }]);
+                                }
+                                updateNotesList(newNotesList);
                                 updateTextForNote("");
                                 updateSubjectForNote("");
                             }}>
