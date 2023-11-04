@@ -13,7 +13,7 @@ function NoteForm({subjectForNote, updateSubjectForNote, textForNote, updateText
         <>
             <div className="row my-2">
                 <div className="col">
-                    <input className="w-100 p-3 bg-white text-black rounded-3 border-0" value={subjectForNote}
+                    <input className="w-100 p-3 bg-white text-black rounded-3 border-0 h3" value={subjectForNote}
                            onChange={
                                (currentValue) =>
                                    updateSubjectForNote(currentValue.target.value)
@@ -23,8 +23,8 @@ function NoteForm({subjectForNote, updateSubjectForNote, textForNote, updateText
             </div>
             <div className="row my-2">
                 <div className="col">
-                    <TextareaAutosize minRows="5" maxRows="20" id="no-resize"
-                                      className="w-100 p-3 bg-white text-black rounded-3 border-0"
+                    <TextareaAutosize minRows="5" maxRows="20"
+                                      className="w-100 p-3 bg-white text-black rounded-3 border-0 no-resize"
                                       value={textForNote}
                                       onChange={
                                           (currentValue) =>

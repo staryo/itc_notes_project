@@ -18,6 +18,6 @@ body {
     white-space: pre-line;
 }
 
-textarea#no-resize {
+textarea.no-resize {
     resize: none;
 }

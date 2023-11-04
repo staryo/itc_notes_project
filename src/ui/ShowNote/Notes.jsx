@@ -8,7 +8,7 @@ function Notes() {
     return (
         <>
             {
-                Object.values(notesList).toReversed().map((note) => {
+                Object.values(notesList.notesList).toReversed().map((note) => {
                     return (
                         <EachNote
                             key={note.identity}

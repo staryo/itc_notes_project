@@ -2,38 +2,35 @@ import "./styles.css";
 import CreateNote from "./ui/NoteEditor/CreateNote.jsx";
 import {createContext, useEffect, useState} from "react";
 import Notes from "./ui/ShowNote/Notes.jsx";
+import NotesListClass from "./logic/NotesListClass.js";
 
-export const NoteList = createContext([]);
-export const UpdateNoteList = createContext((key) => key);
+export const NoteList = createContext(undefined);
 
 function App() {
 
-    const [noteList, updateNotesList] = useState(() => {
+    const [noteListState, updateNotesList] = useState(() => {
         const saved = localStorage.getItem("noteList");
         const initialValue = JSON.parse(saved);
         return initialValue || {};
     });
 
-
     useEffect(() => {
-        localStorage.setItem("noteList", JSON.stringify(noteList));
-    }, [noteList]);
+        localStorage.setItem("noteList", JSON.stringify(noteListState));
+    }, [noteListState]);
 
     return (
         <>
-            <NoteList.Provider value={noteList}>
-                <UpdateNoteList.Provider value={updateNotesList}>
-                    <div className="row w-100 my-3 g-3">
-                        <div className="col">
-                            <div className="p-3 rounded-2 box border">
-                                <CreateNote/>
-                            </div>
+            <NoteList.Provider value={new NotesListClass(noteListState, updateNotesList)}>
+                <div className="row w-100 my-3 g-3">
+                    <div className="col">
+                        <div className="p-3 rounded-2 box border">
+                            <CreateNote/>
                         </div>
                     </div>
-                    <div className="row w-100 g-3">
-                        <Notes/>
-                    </div>
-                </UpdateNoteList.Provider>
+                </div>
+                <div className="row w-100 g-3">
+                    <Notes/>
+                </div>
             </NoteList.Provider>
         </>
     );

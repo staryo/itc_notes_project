@@ -4,7 +4,7 @@ import moment from "moment";
 import PropTypes from "prop-types";
 import NoteForm from "../NoteEditor/NoteForm.jsx";
 import {useContext, useEffect, useState} from "react";
-import {NoteList, UpdateNoteList} from "../../App.jsx";
+import {NoteList} from "../../App.jsx";
 
 NoteModal.propTypes = {
     show: PropTypes.bool,
@@ -16,21 +16,7 @@ function NoteModal({show, handleClose, noteData}) {
     const [textForNote, updateTextForNote] = useState(noteData.text);
     const [subjectForNote, updateSubjectForNote] = useState(noteData.subject);
 
-    const notesList = useContext(NoteList)
-    const updateNotesList = useContext(UpdateNoteList)
-
-    const editNoteInList = (noteIdentity, subject, text) => {
-        const newNotesList = {...notesList}
-        newNotesList[noteIdentity] = {
-            ...newNotesList[noteIdentity],
-            subject,
-            text,
-            edit: new Date()
-        };
-        updateNotesList(
-            newNotesList
-        );
-    };
+    const notesList = useContext(NoteList);
 
     useEffect(() => {
         updateTextForNote(textForNote);
@@ -41,13 +27,21 @@ function NoteModal({show, handleClose, noteData}) {
 
     const handleSave = (identity, subject, text) => {
         handleClose();
-        editNoteInList(identity, subject, text)
+        notesList.editNoteInList(identity, subject, text);
     };
     return (
         <>
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
+                    <div className="p-1 small">
                     Created: {moment(noteData.date).calendar()}
+                    </div>
+                    <div className="p-1 small text-black-50">
+                    {noteData.edit
+                        ? `(Last updated: ${moment(noteData.edit).fromNow()})`
+                        : ""
+                    }
+                    </div>
                 </Modal.Header>
                 <Modal.Body>
                     <NoteForm

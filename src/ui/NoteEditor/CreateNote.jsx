@@ -1,19 +1,12 @@
 import {useContext, useEffect, useState} from "react";
-import PropTypes from "prop-types";
 import NoteForm from "./NoteForm.jsx";
-import {NoteList, UpdateNoteList} from "../../App.jsx";
-
-CreateNote.propTypes = {
-    notesList: PropTypes.array,
-    updateNotesList: PropTypes.func,
-};
+import {NoteList} from "../../App.jsx";
 
 function CreateNote() {
     const [textForNote, updateTextForNote] = useState("");
     const [subjectForNote, updateSubjectForNote] = useState("");
 
-    const notesList = useContext(NoteList)
-    const updateNotesList = useContext(UpdateNoteList)
+    const notesList = useContext(NoteList);
 
     useEffect(() => {
         updateTextForNote(textForNote);
@@ -35,16 +28,7 @@ function CreateNote() {
                     <button type="button"
                             className={`w-100 btn btn-outline-light btn-lg btn-block ${textForNote === "" ? "disabled" : ""}`}
                             onClick={() => {
-                                const identity = Date.now()
-                                const newNotesList = {...notesList}
-                                newNotesList[identity] = {
-                                    "identity": Date.now(),
-                                    "text": textForNote,
-                                    "date": new Date(),
-                                    "edit": null,
-                                    "subject": subjectForNote
-                                }
-                                updateNotesList(newNotesList);
+                                notesList.addNoteToList(textForNote, subjectForNote)
                                 updateTextForNote("");
                                 updateSubjectForNote("");
                             }}>
