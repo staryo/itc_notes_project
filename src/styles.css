@@ -21,3 +21,7 @@ body {
 textarea.no-resize {
     resize: none;
 }
+
+div.darkgrey {
+    color: darkgray;
+}

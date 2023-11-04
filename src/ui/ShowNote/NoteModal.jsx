@@ -34,13 +34,13 @@ function NoteModal({show, handleClose, noteData}) {
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <div className="p-1 small">
-                    Created: {moment(noteData.date).calendar()}
+                        Created: {moment(noteData.date).calendar()}
                     </div>
                     <div className="p-1 small text-black-50">
-                    {noteData.edit
-                        ? `(Last updated: ${moment(noteData.edit).fromNow()})`
-                        : ""
-                    }
+                        {noteData.edit
+                            ? `(Last updated: ${moment(noteData.edit).fromNow()})`
+                            : ""
+                        }
                     </div>
                 </Modal.Header>
                 <Modal.Body>
@@ -49,12 +49,17 @@ function NoteModal({show, handleClose, noteData}) {
                         subjectForNote={subjectForNote}
                         updateTextForNote={updateTextForNote}
                         updateSubjectForNote={updateSubjectForNote}
+                        disabled={noteData.archived}
                     />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => {
-                        handleSave(noteData.identity, subjectForNote, textForNote);
-                    }}>
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            handleSave(noteData.identity, subjectForNote, textForNote);
+                        }}
+                        className={noteData.archived ? "disabled" : ""}
+                    >
                         Save Changes
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>
