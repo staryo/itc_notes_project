@@ -58,7 +58,7 @@ function NoteModal({show, handleClose, noteData}) {
                         onClick={() => {
                             handleSave(noteData.identity, subjectForNote, textForNote);
                         }}
-                        className={noteData.archived ? "disabled" : ""}
+                        className={noteData.archived ? "d-none" : ""}
                     >
                         Save Changes
                     </Button>
