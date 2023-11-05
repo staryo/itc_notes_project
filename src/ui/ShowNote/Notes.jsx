@@ -11,7 +11,7 @@ function Notes() {
             <div className="row w-100 g-3">
                 <div className="col">
                     <button
-                        className={`btn btn-outline-success w-100 ${isArchive? "": "active"}`}
+                        className={`btn btn-outline-light w-100 border-0 ${isArchive? "": "active"}`}
                         type="button"
                         onClick={() => setArchive(false)}
                     >
@@ -20,7 +20,7 @@ function Notes() {
                 </div>
                 <div className="col">
                     <button
-                        className={`btn btn-outline-success w-100 ${isArchive? "active": ""}`}
+                        className={`btn btn-outline-light border-0 w-100 ${isArchive? "active": ""}`}
                         type="button"
                         onClick={() => setArchive(true)}
                     >
