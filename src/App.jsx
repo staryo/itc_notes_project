@@ -26,7 +26,7 @@ function App() {
                         <CreateNote/>
                     </div>
                 </div>
-                <div className="row w-100 my-1 g-3">
+                <div className="row w-100 my-1 g-3 p-0">
                     <div className="col p-3 rounded-2 box border">
                         <Notes/>
                     </div>
