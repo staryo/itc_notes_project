@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import moment from "moment";
 import PropTypes from "prop-types";
 import NoteForm from "../NoteEditor/NoteForm.jsx";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {NoteList} from "../../App.jsx";
 
 NoteModal.propTypes = {
@@ -17,13 +17,6 @@ function NoteModal({show, handleClose, noteData}) {
     const [subjectForNote, updateSubjectForNote] = useState(noteData.subject);
 
     const notesList = useContext(NoteList);
-
-    useEffect(() => {
-        updateTextForNote(textForNote);
-    }, [textForNote]);
-    useEffect(() => {
-        updateSubjectForNote(subjectForNote);
-    }, [subjectForNote]);
 
     const handleSave = (identity, subject, text) => {
         handleClose();
